@@ -17,6 +17,7 @@ The digital twin simulation system creates virtual representations of individual
 │   ├── text_questions/       # Survey questions
 │   ├── text_simulation_input/ # Combined input files
 │   └── text_simulation_output/ # Simulation results
+├── evaluation/                # Evaluation folder  
 ├── scripts/                  # Utility scripts
 ├── data/                     # Raw data
 └── cache/                    # Cached data
