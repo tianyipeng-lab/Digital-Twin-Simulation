@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "digital-twin-simulation"
+version = "0.1.0"
+description = "Digital Twin Simulation for NeurIPS Submission"
+authors = ["Tianyi Peng <tianyipeng95@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11.7"
+datasets = "^2.18.0"
+tqdm = "^4.66.0"
+huggingface-hub = "^0.21.0"
+python-dotenv = "^1.1.0"
+google = "^3.0.0"
+google-generativeai = "^0.8.5"
+openai = "^1.78.1"
+tenacity = "^9.1.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

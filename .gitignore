@@ -3,6 +3,15 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Data directories
+data/
+text_simulation/data/
+text_simulation/text_personas/
+text_simulation/text_questions/
+text_simulation/text_simulation_input/
+text_simulation/text_simulation_output/
+cache/
+
 # C extensions
 *.so
 
