@@ -60,7 +60,7 @@ poetry install
 
 1. Prepare the data:
 ```bash
-python download_dataset.py
+poetry run python download_dataset.py
 ```
 
 2. Set the API key for LLMs
