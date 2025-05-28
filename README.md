@@ -12,7 +12,6 @@ The digital twin simulation system creates virtual representations of individual
 .
 ├── text_simulation/           # Main simulation code
 │   ├── configs/              # Configuration files
-│   ├── data/                 # Data files
 │   ├── text_personas/        # Persona profile data
 │   ├── text_questions/       # Survey questions
 │   ├── text_simulation_input/ # Combined input files
@@ -58,18 +57,29 @@ poetry install
 
 ## Usage
 
-1. Prepare the data:
-```bash
-poetry run python download_dataset.py
-```
+To run the digital twin simulations, follow these steps:
 
-2. Set the API key for LLMs
-```
-OPENAI_API_KEY=XXXXX
-```
+1.  **Prepare the Data**:
+    First, download the necessary dataset by executing the following command:
+    ```bash
+    poetry run python download_dataset.py
+    ```
 
-3. Run the pipeline scripts
-```bash
-./scripts/run_pipeline.sh --max_personas=5 ## run 5 persona simulation
-./scripts/run_pipeline.sh  ### run all 2058 persona simulation
-```
+2.  **Configure API Access**:
+    Set the `OPENAI_API_KEY` environment variable to enable LLM interactions. Create a file named `.env` in the project's root directory and add your API key as follows:
+    ```
+    OPENAI_API_KEY=your_actual_api_key_here
+    ```
+    *Replace `your_actual_api_key_here` with your valid OpenAI API key.*
+
+3.  **Run the Simulation Pipeline**:
+    Execute the main simulation pipeline using the provided shell scripts. You can run a small test with a limited number of personas or simulate all available personas.
+
+    *   For a small test run (e.g., 5 personas):
+        ```bash
+        ./scripts/run_pipeline.sh --max_personas=5
+        ```
+    *   To run the simulation for all 2058 personas:
+        ```bash
+        ./scripts/run_pipeline.sh
+        ```

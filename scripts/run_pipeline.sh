@@ -24,22 +24,18 @@ fi
 # Update the max_personas in the config file
 sed -i '' "s/max_personas: .*/max_personas: $MAX_PERSONAS  # Set to $MAX_PERSONAS for testing/" text_simulation/configs/openai_config.yaml
 
-# Create necessary directories
-mkdir -p text_simulation/data/mega_persona_text
-
 # Run the pipeline steps
 echo "Step 1: Converting personas..."
 poetry run python text_simulation/batch_convert_personas.py \
     --persona_json_dir data/mega_persona_json/mega_persona \
-    --output_text_dir text_simulation/data/mega_persona_text \
+    --output_text_dir text_simulation/text_personas \
     --variant full
 
 echo "Step 2: Converting question JSON to text..."
 poetry run python text_simulation/convert_question_json_to_text.py
 
 echo "Step 3: Creating text simulation input..."
-poetry run python text_simulation/create_text_simulation_input.py \
-    --persona_text_dir text_simulation/data/mega_persona_text
+poetry run python text_simulation/create_text_simulation_input.py 
 
 echo "Step 4: Running LLM simulation..."
 poetry run python text_simulation/run_LLM_simulations.py --config text_simulation/configs/openai_config.yaml --max_personas "$MAX_PERSONAS"
