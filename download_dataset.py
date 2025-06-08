@@ -9,13 +9,16 @@ import os
 import json
 from datasets import load_dataset
 from tqdm.auto import tqdm
+import pandas as pd
+from huggingface_hub import hf_hub_download
 
 def create_directories():
     """Create necessary directories for storing the dataset."""
     directories = [
         'data/mega_persona_json/mega_persona',
         'data/mega_persona_json/answer_blocks',
-        'data/mega_persona_summary_text'
+        'data/mega_persona_summary_text',
+        'data/wave_csv'
     ]
     for directory in directories:
         os.makedirs(directory, exist_ok=True)
@@ -71,6 +74,34 @@ def download_full_persona_data():
             else:
                 #print(f"No summary available for pid {idx}")
                 pass
+
+def download_raw_data():
+    """
+    Download raw CSV files from the dataset repository.
+    """
+    print("Downloading raw data...")
+    raw_files = [
+        "wave_1_labels_anonymized.csv",
+        "wave_1_numbers_anonymized.csv",
+        "wave_2_labels_anonymized.csv",
+        "wave_2_numbers_anonymized.csv",
+        "wave_3_labels_anonymized.csv",
+        "wave_3_numbers_anonymized.csv",
+        "wave_4_labels_anonymized.csv",
+        "wave_4_numbers_anonymized.csv",
+    ]
+    
+    for file_name in tqdm(raw_files, desc="Downloading raw files"):
+        downloaded_file_path = hf_hub_download(
+            repo_id="LLM-Digital-Twin/Twin-2K-500",
+            filename=f"raw_data/{file_name}",
+            repo_type="dataset",
+            cache_dir='./cache',
+        )
+        df = pd.read_csv(downloaded_file_path, low_memory=False)
+        output_path = f"data/wave_csv/{file_name}"
+        df.to_csv(output_path, index=False)
+
 def main():
     """Main function to orchestrate the download and processing of the dataset."""
     try:
@@ -82,6 +113,9 @@ def main():
         
         # Download and process full persona data
         download_full_persona_data()
+        
+        # Download raw data
+        download_raw_data()
         
         print("Dataset download and processing completed successfully!")
         
