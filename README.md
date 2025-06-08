@@ -17,6 +17,8 @@ The digital twin simulation system creates virtual representations of individual
 │   ├── text_simulation_input/ # Combined input files
 │   └── text_simulation_output/ # Simulation results
 ├── evaluation/                # Evaluation folder  
+├── notebooks/                 # Demo notebooks
+│   └── demo_simple_new_question.ipynb  # Simple demo for testing new questions
 ├── scripts/                  # Utility scripts
 ├── data/                     # Raw data
 └── cache/                    # Cached data
@@ -57,7 +59,23 @@ poetry install
 
 ## Usage
 
-To run the digital twin simulations, follow these steps:
+### Quick Start Demo
+
+For a quick introduction to how digital twin simulation works, check out the demo notebook:
+
+```bash
+jupyter notebook notebooks/demo_simple_new_question.ipynb
+```
+
+This notebook demonstrates:
+- Loading persona summaries directly from the Hugging Face dataset
+- Creating prompts for new survey questions
+- Using GPT-4.1 mini to simulate responses
+- Running simulations for multiple personas with a single question
+
+### Full Pipeline
+
+To run the complete digital twin simulation pipeline:
 
 1.  **Prepare the Data**:
     First, download the necessary dataset by executing the following command:
