@@ -83,3 +83,9 @@ To run the digital twin simulations, follow these steps:
         ```bash
         ./scripts/run_pipeline.sh
         ```
+
+4.  **Evaluate the Results**:
+    After running the simulations, evaluate the results using:
+    ```bash
+    ./scripts/run_evaluation_pipeline.sh
+    ```
