@@ -18,7 +18,8 @@ The digital twin simulation system creates virtual representations of individual
 │   └── text_simulation_output/ # Simulation results
 ├── evaluation/                # Evaluation folder  
 ├── notebooks/                 # Demo notebooks
-│   └── demo_simple_new_question.ipynb  # Simple demo for testing new questions
+│   ├── demo_simple_simulation.ipynb    # Quick start: simulate responses to new questions
+│   └── demo_full_pipeline.ipynb        # Complete pipeline with evaluation (alternative to shell scripts)
 ├── scripts/                  # Utility scripts
 ├── data/                     # Raw data
 └── cache/                    # Cached data
@@ -59,21 +60,35 @@ poetry install
 
 ## Usage
 
-### Quick Start Demo
+### Quick Start: Simulate Responses to New Questions
 
-For a quick introduction to how digital twin simulation works, check out the demo notebook:
+For a quick introduction to digital twin simulation, try our interactive demo notebook:
 
 ```bash
-jupyter notebook notebooks/demo_simple_new_question.ipynb
+jupyter notebook notebooks/demo_simple_simulation.ipynb
 ```
 
 This notebook demonstrates:
-- Loading persona summaries directly from the Hugging Face dataset
-- Creating prompts for new survey questions
-- Using GPT-4.1 mini to simulate responses
-- Running simulations for multiple personas with a single question
+- Loading persona summaries directly from Hugging Face dataset (no setup required!)
+- Creating custom survey questions
+- Simulating responses using GPT-4.1 mini
+- Running batch simulations for multiple personas
+- Automatic package installation and API key configuration
+- Works seamlessly in both local environments and Google Colab
 
-### Full Pipeline
+Perfect for researchers who want to quickly test new survey questions on digital twins without complex setup.
+
+### Full Pipeline Demo (Interactive Alternative)
+
+For those who prefer Jupyter notebooks over shell scripts, we provide a complete pipeline walkthrough:
+
+```bash
+jupyter notebook notebooks/demo_full_pipeline.ipynb
+```
+
+This notebook covers the entire workflow from data preparation to evaluation, making it an excellent alternative to the shell script approach described below.
+
+### Full Pipeline (Command Line)
 
 To run the complete digital twin simulation pipeline:
 
