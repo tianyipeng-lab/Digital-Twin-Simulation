@@ -2,12 +2,12 @@
 
 # --- Evaluation Pipeline Orchestration Script ---
 # This script runs the complete evaluation pipeline for simulation results
-# using 'eval_configs/evaluation_basic.yaml' as the configuration file.
+# using 'evaluation/evaluation_basic.yaml' as the configuration file.
 
 set -e  # Exit on error
 
 # Default values
-EVAL_CONFIG_FILE="eval_configs/evaluation_basic.yaml"
+EVAL_CONFIG_FILE="evaluation/evaluation_basic.yaml"
 VERBOSE=""
 
 # --- Functions ---
@@ -21,7 +21,7 @@ print_usage() {
     echo "Example:"
     echo "  $0 --verbose"
     echo ""
-    echo "This script will run the complete evaluation pipeline using 'eval_configs/evaluation_basic.yaml':"
+    echo "This script will run the complete evaluation pipeline using 'evaluation/evaluation_basic.yaml':"
     echo "  1. Convert JSON answer blocks to CSV format (including randdollar breakdown)"
     echo "  2. Generate MAD accuracy and correlation evaluation"
     echo "  3. Run within-between subjects analysis"
