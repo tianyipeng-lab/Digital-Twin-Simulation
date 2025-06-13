@@ -5,8 +5,6 @@ MAD (Mean Absolute Difference) Accuracy Evaluation Script
 
 This script computes accuracy metrics by comparing responses between different waves
 and LLM-imputed responses. It generates both Excel summaries and visualization plots.
-
-Based on the MAD 0514 notebook analysis - following the exact same logic.
 """
 
 import os
@@ -18,13 +16,14 @@ from matplotlib.ticker import FormatStrFormatter
 import argparse
 import yaml
 import logging
+from typing import Dict, Tuple, List, Optional
 
 # Set up logging
 logging.basicConfig(level=logging.WARNING, format='%(levelname)s: %(message)s')
 logger = logging.getLogger(__name__)
 
 
-def summary_mad(values):
+def summary_mad(values) -> Tuple[float, float, float, float]:
     """
     Compute summary statistics for MAD values including confidence intervals.
     
@@ -58,6 +57,273 @@ def assign_decile(value, thresholds):
         if value <= t:
             return i + 1
     return 10
+
+
+def compute_column_mad(predictions: pd.DataFrame, ground_truth: pd.DataFrame, 
+                      column_ranges: Dict[str, float], 
+                      random_baseline: Optional[pd.DataFrame] = None) -> pd.DataFrame:
+    """
+    Compute per-column MAD accuracy metrics.
+    
+    Args:
+        predictions: DataFrame with predictions (index should be respondent IDs)
+        ground_truth: DataFrame with ground truth values
+        column_ranges: Dictionary mapping column names to their ranges (max - min)
+        random_baseline: Optional DataFrame with random baseline predictions
+        
+    Returns:
+        DataFrame with MAD metrics for each column
+    """
+    # Ensure same columns and index
+    common_cols = list(set(predictions.columns) & set(ground_truth.columns) & set(column_ranges.keys()))
+    common_idx = predictions.index.intersection(ground_truth.index)
+    
+    if random_baseline is not None:
+        common_cols = list(set(common_cols) & set(random_baseline.columns))
+        common_idx = common_idx.intersection(random_baseline.index)
+    
+    mad_col_rows = []
+    
+    for col in common_cols:
+        # Get valid (non-null) mask
+        mask = predictions[col].notna() & ground_truth[col].notna()
+        if random_baseline is not None:
+            mask = mask & random_baseline[col].notna()
+        
+        # Get values for valid entries
+        pred_vals = predictions.loc[mask, col]
+        truth_vals = ground_truth.loc[mask, col]
+        
+        if len(pred_vals) == 0:
+            continue
+            
+        # Compute normalized differences
+        r = column_ranges[col]
+        norm_diff_pred = (pred_vals - truth_vals).abs() / r
+        
+        # Compute accuracy metrics
+        mean_pred, se_pred, ci_lo_pred, ci_hi_pred = summary_mad(1 - norm_diff_pred)
+        
+        row = {
+            "Column": col,
+            "predictions vs. ground_truth": norm_diff_pred.mean(),
+            "predictions vs. ground_truth Accuracy": mean_pred,
+            "predictions vs. ground_truth Accuracy 95% CI Lower": ci_lo_pred,
+            "predictions vs. ground_truth Accuracy 95% CI Higher": ci_hi_pred,
+            "number of respondents": mask.sum()
+        }
+        
+        # Add random baseline comparison if provided
+        if random_baseline is not None:
+            rand_vals = random_baseline.loc[mask, col]
+            norm_diff_rand = (rand_vals - truth_vals).abs() / r
+            mean_rand, se_rand, ci_lo_rand, ci_hi_rand = summary_mad(1 - norm_diff_rand)
+            
+            row.update({
+                "random_baseline vs ground_truth": norm_diff_rand.mean(),
+                "random_baseline vs ground_truth Accuracy": mean_rand,
+                "random_baseline vs. ground_truth Accuracy 95% CI Lower": ci_lo_rand,
+                "random_baseline vs. ground_truth Accuracy 95% CI Higher": ci_hi_rand,
+                "predictions accuracy / random accuracy": (1 - norm_diff_pred.mean()) / (1 - norm_diff_rand.mean()) if (1 - norm_diff_rand.mean()) != 0 else np.inf
+            })
+        
+        mad_col_rows.append(row)
+    
+    return pd.DataFrame(mad_col_rows)
+
+
+def compute_task_mad(predictions: pd.DataFrame, ground_truth: pd.DataFrame,
+                    column_ranges: Dict[str, float], qid_to_task: Dict[str, str],
+                    random_baseline: Optional[pd.DataFrame] = None) -> pd.DataFrame:
+    """
+    Compute task-level MAD accuracy metrics.
+    
+    Args:
+        predictions: DataFrame with predictions
+        ground_truth: DataFrame with ground truth values
+        column_ranges: Dictionary mapping column names to their ranges
+        qid_to_task: Dictionary mapping column names to task names
+        random_baseline: Optional DataFrame with random baseline predictions
+        
+    Returns:
+        DataFrame with MAD metrics for each task
+    """
+    # Get all unique tasks
+    all_tasks = sorted(set(qid_to_task.values()))
+    
+    # Ensure consistent column names (uppercase)
+    common_cols = list(set(predictions.columns) & set(ground_truth.columns) & set(column_ranges.keys()))
+    
+    task_level_mads = []
+    
+    for task in all_tasks:
+        # Get columns for this task
+        task_cols = [col for col, t in qid_to_task.items() if t == task and col in common_cols]
+        if not task_cols:
+            continue
+        
+        mad_pred_all = []
+        mad_rand_all = []
+        respondent_counts = set()
+        
+        for col in task_cols:
+            mask = predictions[col].notna() & ground_truth[col].notna()
+            if random_baseline is not None:
+                mask = mask & random_baseline[col].notna()
+            
+            if not mask.any():
+                continue
+            
+            pred_vals = predictions.loc[mask, col]
+            truth_vals = ground_truth.loc[mask, col]
+            
+            r = column_ranges[col]
+            mad_pred_all.append((pred_vals - truth_vals).abs() / r)
+            
+            if random_baseline is not None:
+                rand_vals = random_baseline.loc[mask, col]
+                mad_rand_all.append((rand_vals - truth_vals).abs() / r)
+            
+            respondent_counts.update(pred_vals.index)
+        
+        if mad_pred_all:
+            col_diffs_pred = pd.concat(mad_pred_all)
+            mean_pred, se_pred, ci_lo_pred, ci_hi_pred = summary_mad(1 - col_diffs_pred)
+            
+            row = {
+                "Task": task,
+                "predictions vs. ground_truth": col_diffs_pred.mean(),
+                "predictions vs. ground_truth Accuracy": mean_pred,
+                "predictions vs. ground_truth Accuracy 95% CI Lower": ci_lo_pred,
+                "predictions vs. ground_truth Accuracy 95% CI Higher": ci_hi_pred,
+                "number of respondents": len(respondent_counts)
+            }
+            
+            if random_baseline is not None and mad_rand_all:
+                col_diffs_rand = pd.concat(mad_rand_all)
+                mean_rand, se_rand, ci_lo_rand, ci_hi_rand = summary_mad(1 - col_diffs_rand)
+                
+                row.update({
+                    "random_baseline vs ground_truth": col_diffs_rand.mean(),
+                    "random_baseline vs ground_truth Accuracy": mean_rand,
+                    "random_baseline vs. ground_truth Accuracy 95% CI Lower": ci_lo_rand,
+                    "random_baseline vs. ground_truth Accuracy 95% CI Higher": ci_hi_rand,
+                    "predictions accuracy / random accuracy": (1 - col_diffs_pred.mean()) / (1 - col_diffs_rand.mean()) if (1 - col_diffs_rand.mean()) != 0 else np.inf
+                })
+            
+            task_level_mads.append(row)
+    
+    return pd.DataFrame(task_level_mads)
+
+
+def get_default_column_ranges() -> Dict[str, Tuple[float, float]]:
+    """
+    Get the default min/max ranges for survey columns.
+    
+    Returns:
+        Dictionary mapping column names to (min, max) tuples
+    """
+    manual_minmax = {}
+
+    # false consensus (self)
+    manual_minmax.update({f"FALSE CONS. SELF _{i}": (1, 5) for i in range(1, 11)})
+
+    # false consensus (others)
+    others_ids = [1,2,3,4,5,6,7,10,11,12]
+    manual_minmax.update({f"FALSE CONS. OTHERS _{i}": (0, 100) for i in others_ids})
+
+    # base‐rate / "Form A"
+    manual_minmax["Q156_1"]    = (0, 100)
+    manual_minmax["FORM A _1"] = (0, 100)
+
+    # 5‐point questions (range 1–6)
+    codes_5_6 = ["157","158"] + [f"160_{i}" for i in (1,2,3)] + [f"159_{i}" for i in (1,2,3)]
+    manual_minmax.update({f"Q{c}": (1, 6) for c in codes_5_6})
+
+    # outcome‐bias and similar (range 1–7)
+    for c in ("161","162"):
+        manual_minmax[f"Q{c}"] = (1, 7)
+
+    # anchoring & adjustment (range 1–10)
+    for c in ("164","166","168","170"):
+        manual_minmax[f"Q{c}"] = (1, 10)
+
+    # less‑is‑more & siblings (range 1–5 or 1–6)
+    for c in ("171","172","173","174","175","176"):
+        manual_minmax[f"Q{c}"] = (1, 5)
+    for c in ("177","178","179"):
+        manual_minmax[f"Q{c}"] = (1, 6)
+
+    # sunk cost fallacy (0–20)
+    manual_minmax["Q181"] = (0, 20)
+    manual_minmax["Q182"] = (0, 20)
+
+    # absolute vs relative savings (1–2)
+    for c in ("183","184"):
+        manual_minmax[f"Q{c}"] = (1, 2)
+
+    # Allais (1–10)
+    for c in ("189","190","191"):
+        manual_minmax[f"Q{c}"] = (1, 10)
+
+    # myside bias (1–2)
+    for c in ("192","193"):
+        manual_minmax[f"Q{c}"] = (1, 2)
+
+    # WTA/WTP (1–6)
+    for c in ("194","195"):
+        manual_minmax[f"Q{c}"] = (1, 6)
+
+    # prob‑matching vs max (1–2)
+    manual_minmax.update({f"Q198_{i}": (1, 2) for i in range(1, 11)})
+    manual_minmax.update({f"Q203_{i}": (1, 2) for i in range(1, 7)})
+
+    # non‑separability (1–7)
+    manual_minmax.update({f"NONSEPARABILTY BENE _{i}": (1, 7) for i in range(1,5)})
+    manual_minmax.update({f"NONSEPARABILITY RIS _{i}": (1, 7) for i in range(1,5)})
+
+    # omission‐bias & denominator neglect
+    manual_minmax["OMISSION BIAS "]       = (1, 4)
+    manual_minmax["DENOMINATOR NEGLECT "] = (1, 2)
+
+    # pricing questions (1–2)
+    manual_minmax.update({f"{i}_Q295": (1, 2) for i in range(1, 41)})
+    
+    return manual_minmax
+
+
+def get_default_qid_to_task() -> Dict[str, str]:
+    """
+    Get the default mapping from question IDs to task names.
+    
+    Returns:
+        Dictionary mapping question IDs to task names
+    """
+    qid_to_task_raw = {
+        **{f"False Cons. self _{i}": "false consensus" for i in range(1, 11)},
+        **{f"False cons. others _{i}": "false consensus" for i in [1,2,3,4,5,6,7,10,11,12]},
+        "Q156_1": "base rate", "Form A _1": "base rate",
+        "Q157": "framing problem", "Q158": "framing problem",
+        **{f"Q160_{i}": "conjunction problem (Linda)" for i in [1,2,3]},
+        **{f"Q159_{i}": "conjunction problem (Linda)" for i in [1,2,3]},
+        "Q161": "outcome bias", "Q162": "outcome bias",
+        "Q164": "anchoring and adjustment", "Q166": "anchoring and adjustment",
+        "Q168": "anchoring and adjustment", "Q170": "anchoring and adjustment",
+        **{f"Q17{i}": "less is more" for i in range(1, 10)},
+        "Q181": "sunk cost fallacy", "Q182": "sunk cost fallacy",
+        "Q183": "absolute vs. relative savings", "Q184": "absolute vs. relative savings",
+        "Q189": "WTA/WTP-Thaler", "Q190": "WTA/WTP-Thaler", "Q191": "WTA/WTP-Thaler",
+        "Q192": "Allais", "Q193": "Allais",
+        "Q194": "myside", "Q195": "myside",
+        **{f"Q198_{i}": "prob matching vs. max" for i in range(1, 11)},
+        **{f"Q203_{i}": "prob matching vs. max" for i in range(1, 7)},
+        **{f"nonseparabilty bene _{i}": "non-separability of risks and benefits" for i in range(1, 5)},
+        **{f"nonseparability ris _{i}": "non-separability of risks and benefits" for i in range(1, 5)},
+        "Omission bias ": "omission",
+        "Denominator neglect ": "denominator neglect",
+        **{f"{i}_Q295": "pricing" for i in range(1, 41)}
+    }
+    return {k.upper(): v for k, v in qid_to_task_raw.items()}
 
 
 def compute_mad_summary(csv_dir: str, output_excel_path: str, output_fig_path: str, fig_title: str):
@@ -154,73 +420,8 @@ def compute_mad_summary(csv_dir: str, output_excel_path: str, output_fig_path: s
     # Update cols_all to only include columns that have valid data
     cols_all = [col for col in cols_all if col in valid_mask.columns]
 
-    # ────────────────────────────────────────────
-    # Manual min/max definitions for every column
-    manual_minmax = {}
-
-    # false consensus (self)
-    manual_minmax.update({f"FALSE CONS. SELF _{i}": (1, 5) for i in range(1, 11)})
-
-    # false consensus (others)
-    others_ids = [1,2,3,4,5,6,7,10,11,12]
-    manual_minmax.update({f"FALSE CONS. OTHERS _{i}": (0, 100) for i in others_ids})
-
-    # base‐rate / "Form A"
-    manual_minmax["Q156_1"]    = (0, 100)
-    manual_minmax["FORM A _1"] = (0, 100)
-
-    # 5‐point questions (range 1–6)
-    codes_5_6 = ["157","158"] + [f"160_{i}" for i in (1,2,3)] + [f"159_{i}" for i in (1,2,3)]
-    manual_minmax.update({f"Q{c}": (1, 6) for c in codes_5_6})
-
-    # outcome‐bias and similar (range 1–7)
-    for c in ("161","162"):
-        manual_minmax[f"Q{c}"] = (1, 7)
-
-    # anchoring & adjustment (range 1–10)
-    for c in ("164","166","168","170"):
-        manual_minmax[f"Q{c}"] = (1, 10)
-
-    # less‑is‑more & siblings (range 1–5 or 1–6)
-    for c in ("171","172","173","174","175","176"):
-        manual_minmax[f"Q{c}"] = (1, 5)
-    for c in ("177","178","179"):
-        manual_minmax[f"Q{c}"] = (1, 6)
-
-    # sunk cost fallacy (0–20)
-    manual_minmax["Q181"] = (0, 20)
-    manual_minmax["Q182"] = (0, 20)
-
-    # absolute vs relative savings (1–2)
-    for c in ("183","184"):
-        manual_minmax[f"Q{c}"] = (1, 2)
-
-    # Allais (1–10)
-    for c in ("189","190","191"):
-        manual_minmax[f"Q{c}"] = (1, 10)
-
-    # myside bias (1–2)
-    for c in ("192","193"):
-        manual_minmax[f"Q{c}"] = (1, 2)
-
-    # WTA/WTP (1–6)
-    for c in ("194","195"):
-        manual_minmax[f"Q{c}"] = (1, 6)
-
-    # prob‐matching vs max (1–2)
-    manual_minmax.update({f"Q198_{i}": (1, 2) for i in range(1, 11)})
-    manual_minmax.update({f"Q203_{i}": (1, 2) for i in range(1, 7)})
-
-    # non‑separability (1–7)
-    manual_minmax.update({f"NONSEPARABILTY BENE _{i}": (1, 7) for i in range(1,5)})
-    manual_minmax.update({f"NONSEPARABILITY RIS _{i}": (1, 7) for i in range(1,5)})
-
-    # omission‐bias & denominator neglect
-    manual_minmax["OMISSION BIAS "]       = (1, 4)
-    manual_minmax["DENOMINATOR NEGLECT "] = (1, 2)
-
-    # pricing questions (1–2)
-    manual_minmax.update({f"{i}_Q295": (1, 2) for i in range(1, 41)})
+    # Get manual min/max definitions from modular function
+    manual_minmax = get_default_column_ranges()
 
     # ────────────────────────────────────────────
     # Filter cols_all and build mins, maxs, ranges
@@ -283,49 +484,43 @@ def compute_mad_summary(csv_dir: str, output_excel_path: str, output_fig_path: s
     )
 
     # ---------------------------
-    # Compute per-column MADs
+    # Compute per-column MADs using modular function
     # ---------------------------
-    mad_col_rows = []
-    for col in cols_all:
-        mask = valid_mask[col]
-        x1 = df_wave1_3.loc[mask, col]
-        x4 = df_wave4.loc[mask, col]
-        xl = df_llm.loc[mask, col]
-        # random baseline: uniform in [min, max]
-        xrand = random_baseline.loc[mask, col]
-        
-        r = ranges[col]
-        norm_diff_14 = (x1 - x4).abs() / r
-        norm_diff_1l = (x1 - xl).abs() / r
-        norm_diff_rand = (x1 - xrand).abs() / r
-        
-        mean_14, se_14, ci_lo_14, ci_hi_14 = summary_mad(1-norm_diff_14)
-        mean_1l, se_1l, ci_lo_1l, ci_hi_1l = summary_mad(1-norm_diff_1l)
-        mean_rand, se_rand, ci_lo_rand, ci_hi_rand = summary_mad(1-norm_diff_rand)
-        
-        mad_col_rows.append({
-            "Column": col,
-            
-            "wave4 vs. wave1_3": norm_diff_14.mean(),
-            "wave4 vs. wave1_3 Accuracy": mean_14,
-            "wave4 vs. wave1_3 Accuracy 95% CI Lower": ci_lo_14,
-            "wave4 vs. wave1_3 Accuracy 95% CI Higher": ci_hi_14,
-            
-            "llm vs. wave1_3": norm_diff_1l.mean(),
-            "llm vs. wave1_3 Accuracy": mean_1l,
-            "llm vs. wave1_3 Accuracy 95% CI Lower": ci_lo_1l,
-            "llm vs. wave1_3 Accuracy 95% CI Higher": ci_hi_1l,
-            "llm accuracy / wave4 accuracy": (1 - norm_diff_1l.mean()) / (1 - norm_diff_14.mean()),
-            
-            "random_baseline vs wave1_3": norm_diff_rand.mean(),
-            "random_baseline vs wave1_3 Accuracy": mean_rand,
-            "random_baseline vs. wave1_3 Accuracy 95% CI Lower": ci_lo_rand,
-            "random_baseline vs. wave1_3 Accuracy 95% CI Higher": ci_hi_rand,
-            "random_baseline accuracy / wave4 accuracy": (1 - norm_diff_rand.mean()) / (1 - norm_diff_14.mean()),
-            
-            "number of respondents": mask.sum()
-        })
-    mad_col_df = pd.DataFrame(mad_col_rows)
+    # Convert ranges dict to column_ranges dict expected by function
+    column_ranges_dict = {col: float(ranges[col]) for col in cols_all}
+    
+    # Compute MADs for each comparison
+    mad_col_wave4 = compute_column_mad(df_wave4, df_wave1_3, column_ranges_dict)
+    mad_col_llm = compute_column_mad(df_llm, df_wave1_3, column_ranges_dict)
+    mad_col_rand = compute_column_mad(random_baseline, df_wave1_3, column_ranges_dict)
+    
+    # Merge the results
+    mad_col_df = mad_col_wave4.rename(columns={
+        'predictions vs. ground_truth': 'wave4 vs. wave1_3',
+        'predictions vs. ground_truth Accuracy': 'wave4 vs. wave1_3 Accuracy',
+        'predictions vs. ground_truth Accuracy 95% CI Lower': 'wave4 vs. wave1_3 Accuracy 95% CI Lower',
+        'predictions vs. ground_truth Accuracy 95% CI Higher': 'wave4 vs. wave1_3 Accuracy 95% CI Higher'
+    })
+    
+    # Add LLM columns
+    llm_cols = mad_col_llm[['Column', 'predictions vs. ground_truth', 'predictions vs. ground_truth Accuracy',
+                           'predictions vs. ground_truth Accuracy 95% CI Lower', 'predictions vs. ground_truth Accuracy 95% CI Higher']]
+    llm_cols.columns = ['Column', 'llm vs. wave1_3', 'llm vs. wave1_3 Accuracy', 
+                       'llm vs. wave1_3 Accuracy 95% CI Lower', 'llm vs. wave1_3 Accuracy 95% CI Higher']
+    mad_col_df = mad_col_df.merge(llm_cols, on='Column')
+    
+    # Add llm accuracy / wave4 accuracy
+    mad_col_df['llm accuracy / wave4 accuracy'] = (1 - mad_col_df['llm vs. wave1_3']) / (1 - mad_col_df['wave4 vs. wave1_3'])
+    
+    # Add random baseline columns
+    rand_cols = mad_col_rand[['Column', 'predictions vs. ground_truth', 'predictions vs. ground_truth Accuracy',
+                             'predictions vs. ground_truth Accuracy 95% CI Lower', 'predictions vs. ground_truth Accuracy 95% CI Higher']]
+    rand_cols.columns = ['Column', 'random_baseline vs wave1_3', 'random_baseline vs wave1_3 Accuracy',
+                        'random_baseline vs. wave1_3 Accuracy 95% CI Lower', 'random_baseline vs. wave1_3 Accuracy 95% CI Higher']
+    mad_col_df = mad_col_df.merge(rand_cols, on='Column')
+    
+    # Add random_baseline accuracy / wave4 accuracy
+    mad_col_df['random_baseline accuracy / wave4 accuracy'] = (1 - mad_col_df['random_baseline vs wave1_3']) / (1 - mad_col_df['wave4 vs. wave1_3'])
 
     # ---------------------------
     # Summary of column-level MADs
@@ -354,92 +549,39 @@ def compute_mad_summary(csv_dir: str, output_excel_path: str, output_fig_path: s
     # ---------------------------
     # Task-level MADs (including benchmark)
     # ---------------------------
-    qid_to_task_raw = {
-        **{f"False Cons. self _{i}": "false consensus" for i in range(1, 11)},
-        **{f"False cons. others _{i}": "false consensus" for i in [1,2,3,4,5,6,7,10,11,12]},
-        "Q156_1": "base rate", "Form A _1": "base rate",
-        "Q157": "framing problem", "Q158": "framing problem",
-        **{f"Q160_{i}": "conjunction problem (Linda)" for i in [1,2,3]},
-        **{f"Q159_{i}": "conjunction problem (Linda)" for i in [1,2,3]},
-        "Q161": "outcome bias", "Q162": "outcome bias",
-        "Q164": "anchoring and adjustment", "Q166": "anchoring and adjustment",
-        "Q168": "anchoring and adjustment", "Q170": "anchoring and adjustment",
-        **{f"Q17{i}": "less is more" for i in range(1, 10)},
-        "Q181": "sunk cost fallacy", "Q182": "sunk cost fallacy",
-        "Q183": "absolute vs. relative savings", "Q184": "absolute vs. relative savings",
-        "Q189": "WTA/WTP-Thaler", "Q190": "WTA/WTP-Thaler", "Q191": "WTA/WTP-Thaler",
-        "Q192": "Allais", "Q193": "Allais",
-        "Q194": "myside", "Q195": "myside",
-        **{f"Q198_{i}": "prob matching vs. max" for i in range(1, 11)},
-        **{f"Q203_{i}": "prob matching vs. max" for i in range(1, 7)},
-        **{f"nonseparabilty bene _{i}": "non-separability of risks and benefits" for i in range(1, 5)},
-        **{f"nonseparability ris _{i}": "non-separability of risks and benefits" for i in range(1, 5)},
-        "Omission bias ": "omission",
-        "Denominator neglect ": "denominator neglect",
-        **{f"{i}_Q295": "pricing" for i in range(1, 41)}
-    }
-    qid_to_task = {k.upper(): v for k, v in qid_to_task_raw.items()}
-    all_tasks = sorted(set(qid_to_task.values()))
-
-    task_level_mads = []
-    for task in all_tasks:
-        task_cols = [col for col, t in qid_to_task.items() if t == task and col in cols_all]
-        if not task_cols:
-            continue
-
-        mad_14_all, mad_1l_all, mad_rand_all = [], [], []
-        respondent_counts = set()
-
-        for col in task_cols:
-            mask = df_wave1_3[col].notna() & df_wave4[col].notna() & df_llm[col].notna()
-            if not mask.any():
-                continue
-
-            v1 = df_wave1_3.loc[mask, col]
-            v4 = df_wave4.loc[mask, col]
-            vl = df_llm.loc[mask, col]
-            # random baseline
-            vrand = random_baseline.loc[v1.index, col]
-            
-            r = ranges[col]
-            mad_14_all.append((v1 - v4).abs() / r)
-            mad_1l_all.append((v1 - vl).abs() / r)
-            mad_rand_all.append((v1 - vrand).abs() / r)
-            respondent_counts.update(v1.index)
-
-        if mad_14_all and mad_1l_all and mad_rand_all:
-            col_diffs_14 = pd.concat(mad_14_all)
-            col_diffs_1l = pd.concat(mad_1l_all)
-            col_diffs_rand = pd.concat(mad_rand_all)
-
-            mean_14, se_14, ci_lo_14, ci_hi_14 = summary_mad(1-col_diffs_14)
-            mean_1l, se_1l, ci_lo_1l, ci_hi_1l = summary_mad(1-col_diffs_1l)
-            mean_rand, se_rand, ci_lo_rand, ci_hi_rand = summary_mad(1-col_diffs_rand)
-            
-            task_level_mads.append({
-                "Task": task,
-            
-                "wave4 vs. wave1_3": col_diffs_14.mean(),
-                "wave4 vs. wave1_3 Accuracy": mean_14,
-                "wave4 vs. wave1_3 Accuracy 95% CI Lower": ci_lo_14,
-                "wave4 vs. wave1_3 Accuracy 95% CI Higher": ci_hi_14,
-            
-                "llm vs. wave1_3": col_diffs_1l.mean(),
-                "llm vs. wave1_3 Accuracy": mean_1l,
-                "llm vs. wave1_3 Accuracy 95% CI Lower": ci_lo_1l,
-                "llm vs. wave1_3 Accuracy 95% CI Higher": ci_hi_1l,
-                "llm accuracy / wave4 accuracy": (1 - col_diffs_1l.mean()) / (1 - col_diffs_14.mean()),
-            
-                "random_baseline vs wave1_3": col_diffs_rand.mean(),            
-                "random_baseline vs wave1_3 Accuracy": mean_rand,
-                "random_baseline vs. wave1_3 Accuracy 95% CI Lower": ci_lo_rand,
-                "random_baseline vs. wave1_3 Accuracy 95% CI Higher": ci_hi_rand,
-                "random_baseline accuracy / wave4 accuracy": (1 - col_diffs_rand.mean()) / (1 - col_diffs_14.mean()),
-                
-                "number of respondents": len(respondent_counts)
-            })
-
-    mad_task_level_df = pd.DataFrame(task_level_mads)
+    qid_to_task = get_default_qid_to_task()
+    # Compute task-level MADs using modular function
+    mad_task_wave4 = compute_task_mad(df_wave4, df_wave1_3, column_ranges_dict, qid_to_task)
+    mad_task_llm = compute_task_mad(df_llm, df_wave1_3, column_ranges_dict, qid_to_task)
+    mad_task_rand = compute_task_mad(random_baseline, df_wave1_3, column_ranges_dict, qid_to_task)
+    
+    # Merge the results
+    mad_task_level_df = mad_task_wave4.rename(columns={
+        'predictions vs. ground_truth': 'wave4 vs. wave1_3',
+        'predictions vs. ground_truth Accuracy': 'wave4 vs. wave1_3 Accuracy',
+        'predictions vs. ground_truth Accuracy 95% CI Lower': 'wave4 vs. wave1_3 Accuracy 95% CI Lower',
+        'predictions vs. ground_truth Accuracy 95% CI Higher': 'wave4 vs. wave1_3 Accuracy 95% CI Higher'
+    })
+    
+    # Add LLM columns
+    llm_task_cols = mad_task_llm[['Task', 'predictions vs. ground_truth', 'predictions vs. ground_truth Accuracy',
+                                  'predictions vs. ground_truth Accuracy 95% CI Lower', 'predictions vs. ground_truth Accuracy 95% CI Higher']]
+    llm_task_cols.columns = ['Task', 'llm vs. wave1_3', 'llm vs. wave1_3 Accuracy',
+                            'llm vs. wave1_3 Accuracy 95% CI Lower', 'llm vs. wave1_3 Accuracy 95% CI Higher']
+    mad_task_level_df = mad_task_level_df.merge(llm_task_cols, on='Task')
+    
+    # Add llm accuracy / wave4 accuracy
+    mad_task_level_df['llm accuracy / wave4 accuracy'] = (1 - mad_task_level_df['llm vs. wave1_3']) / (1 - mad_task_level_df['wave4 vs. wave1_3'])
+    
+    # Add random baseline columns
+    rand_task_cols = mad_task_rand[['Task', 'predictions vs. ground_truth', 'predictions vs. ground_truth Accuracy',
+                                    'predictions vs. ground_truth Accuracy 95% CI Lower', 'predictions vs. ground_truth Accuracy 95% CI Higher']]
+    rand_task_cols.columns = ['Task', 'random_baseline vs wave1_3', 'random_baseline vs wave1_3 Accuracy',
+                             'random_baseline vs. wave1_3 Accuracy 95% CI Lower', 'random_baseline vs. wave1_3 Accuracy 95% CI Higher']
+    mad_task_level_df = mad_task_level_df.merge(rand_task_cols, on='Task')
+    
+    # Add random_baseline accuracy / wave4 accuracy
+    mad_task_level_df['random_baseline accuracy / wave4 accuracy'] = (1 - mad_task_level_df['random_baseline vs wave1_3']) / (1 - mad_task_level_df['wave4 vs. wave1_3'])
 
     # ---------------------------
     # Task-level summary
