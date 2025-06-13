@@ -1,0 +1,49 @@
+# ML Prediction Pipeline Configuration
+# This config file is used to run the ML prediction pipeline that:
+# 1. Converts mega_persona JSON to training CSV
+# 2. Converts answer_blocks JSON to label CSV  
+# 3. Runs XGBoost with nested CV
+# 4. Formats predictions for MAD evaluation
+# 5. Runs MAD accuracy evaluation
+
+# Main pipeline settings
+pipeline:
+  output_dir: ml_prediction/output  # Base output directory
+  rerun: true  # Whether to rerun if outputs exist
+
+# Data source directories
+mega_persona_dir: data/mega_persona_json/mega_persona  # Training data source
+answer_blocks_dir: data/mega_persona_json/answer_blocks  # Label data source (wave1_3 for training)
+
+# ML prediction settings
+ml_prediction:
+  use_nested_cv: true  # Use nested CV with 3-fold inner CV for hyperparameter tuning
+  cv_folds: 3          # Number of outer CV folds (default: 3)
+  max_personas: -1     # -1 for all, or specify a number to limit
+
+# Benchmark CSV for formatting (required for MAD evaluation)
+benchmark_csv: data/wave_csv/wave_4_numbers_anonymized.csv
+
+# Column mapping file (optional)
+column_mapping: evaluation/column_mapping.csv
+
+# Model name for plots
+model_name: XGBoost
+
+# Evaluation settings
+evaluation:
+  output_dir: ${output_dir}/accuracy_evaluation
+  
+# Advanced settings
+advanced:
+  # XGBoost hyperparameter ranges (optional - defaults are used if not specified)
+  xgb_param_ranges:
+    n_estimators: [50, 500]
+    max_depth: [3, 10]
+    learning_rate: [0.01, 0.3]
+    subsample: [0.6, 1.0]
+    colsample_bytree: [0.6, 1.0]
+    min_child_weight: [1, 10]
+    gamma: [0, 0.5]
+    reg_alpha: [0, 1]
+    reg_lambda: [0, 2]
