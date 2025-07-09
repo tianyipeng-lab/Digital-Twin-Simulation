@@ -7,8 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Digital-Twin-Simulation'
-copyright = '2025, Tianyi Peng, George (Zhida) Gui, Grace (Jiarui) Fan'
-author = 'Tianyi Peng, George (Zhida) Gui, Grace (Jiarui) Fan'
+copyright = '2025, Tianyi Peng, George (Zhida) Gui'
+author = 'Tianyi Peng, George (Zhida) Gui'
 release = '0.3.0'
 
 # -- General configuration ---------------------------------------------------
