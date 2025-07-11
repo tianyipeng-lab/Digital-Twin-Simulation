@@ -6,7 +6,7 @@ The survey is conducted across **four distinct waves**, and each block is associ
 
 This manual provides a comprehensive listing of all possible question blocks and their contents. However, the actual set of questions encountered by each participant (or digital twin) may differ due to such randomization and conditional display mechanisms.
 
-# Wave 1
+## Wave 1
 
 ```{toctree}
 :caption: Blocks in Wave 1
@@ -29,7 +29,7 @@ waves/blocks_in_Wave_1/Non_experimental_heuristics_and_biases
 
 ```
 
-# Wave 2
+## Wave 2
 
 ```{toctree}
 :caption: Blocks in Wave 2
@@ -55,7 +55,7 @@ waves/blocks_in_Wave_2/Myside_German
 
 ```
 
-# Wave 3
+## Wave 3
 
 ```{toctree}
 :caption: Blocks in Wave 3
@@ -82,7 +82,7 @@ waves/blocks_in_Wave_3/Product_Preferences___Pricing
 
 ```
 
-# Wave 4
+## Wave 4
 
 ```{toctree}
 :caption: Blocks in Wave 4
