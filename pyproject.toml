@@ -32,6 +32,8 @@ numpy = "^1.24.0"
 [tool.poetry.group.dev.dependencies]
 scipy = "^1.16.0"
 sphinx = "^8.2.3"
+myst-parser = "^4.0.1"
+sphinx-rtd-theme = "^3.0.2"
 
 [build-system]
 requires = ["poetry-core"]

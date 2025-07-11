@@ -1,0 +1,23 @@
+
+# Wave 1
+
+```{toctree}
+:caption: Blocks in Wave 1
+:maxdepth: 1
+
+blocks_in_Wave_1/Demographics
+blocks_in_Wave_1/Personality
+blocks_in_Wave_1/Cognitive_tests
+blocks_in_Wave_1/Economic_preferences___intro
+blocks_in_Wave_1/Economic_preferences
+blocks_in_Wave_1/Base_rate_30_engineers
+blocks_in_Wave_1/Base_rate_70_engineers
+blocks_in_Wave_1/Outcome_bias___success
+blocks_in_Wave_1/Outcome_bias___failure
+blocks_in_Wave_1/Sunk_cost___yes
+blocks_in_Wave_1/Sunk_cost___no
+blocks_in_Wave_1/Allais_Form_1
+blocks_in_Wave_1/Allais_Form_2
+blocks_in_Wave_1/Non_experimental_heuristics_and_biases
+
+
