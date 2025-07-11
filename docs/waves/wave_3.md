@@ -1,0 +1,27 @@
+
+# Wave 3
+
+```{toctree}
+:caption: Blocks in Wave 3
+:maxdepth: 1
+
+blocks_in_Wave_3/Personality
+blocks_in_Wave_3/Cognitive_tests
+blocks_in_Wave_3/Economic_preferences
+blocks_in_Wave_3/Less_is_More_Gamble_A
+blocks_in_Wave_3/Less_is_More_Gamble_B
+blocks_in_Wave_3/Less_is_More_Gamble_C
+blocks_in_Wave_3/Proportion_dominance_1A
+blocks_in_Wave_3/Proportion_dominance_1B
+blocks_in_Wave_3/Proportion_dominance_1C
+blocks_in_Wave_3/Proportion_dominance_2A
+blocks_in_Wave_3/Proportion_dominance_2B
+blocks_in_Wave_3/Proportion_dominance_2C
+blocks_in_Wave_3/WTA_WTP_Thaler___WTP_noncertainty
+blocks_in_Wave_3/WTA_WTP_Thaler_problem___WTP_certainty
+blocks_in_Wave_3/WTA_WTP_Thaler_problem___WTA_certainty
+blocks_in_Wave_3/Probability_matching_vs__maximizing___Problem_1
+blocks_in_Wave_3/Probability_matching_vs__maximizing___Problem_2
+blocks_in_Wave_3/Product_Preferences___Pricing
+
+
