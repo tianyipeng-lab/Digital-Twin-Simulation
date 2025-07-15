@@ -1,6 +1,19 @@
-# Digital Twin Simulation
+# Twin-2K-500: Digital Twin Simulation with LLMs
 
-This repository contains code for simulating digital twins using Large Language Models (LLMs), for the purpose of reproducing the experiments in Twin-2K-500 (paper coming out soon). The project focuses on creating and simulating digital twins based on persona profiles and survey responses.
+This repository contains code for the experiments described in the paper ["Twin-2K-500: A dataset for building digital twins of over 2,000 people based on their answers to over 500 questions."](https://arxiv.org/abs/2505.17479). The project studies creating and simulating digital twins from persona profiles and survey responses using large language models. 
+
+- **Dataset:** [LLM-Digital-Twin/Twin-2K-500 on HuggingFace](https://huggingface.co/datasets/LLM-Digital-Twin/Twin-2K-500)
+
+## Citation
+
+```
+@article{toubia2025twin2k500,
+  title     = {Twin-2K-500: A dataset for building digital twins of over 2,000 people based on their answers to over 500 questions},
+  author    = {Toubia, Olivier and Gui, George Z. and Peng, Tianyi and Merlau, Daniel J. and Li, Ang and Chen, Haozhe},
+  journal   = {arXiv preprint arXiv:2505.17479},
+  year      = {2025}
+}
+```
 
 ## Overview
 
