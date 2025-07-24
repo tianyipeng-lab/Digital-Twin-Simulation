@@ -1,0 +1,29 @@
+# Block: Sunk cost - no [Wave 4]
+
+
+
+- **Element Type:** Block
+
+
+- **Block Type:** Standard
+
+
+- **Block Name:** Sunk cost - no
+
+
+## Questions In This Block:
+
+
+:::{dropdown} Question QID181
+:animate: fade-in
+**Question Type:** Text Entry
+
+**Question Text:**
+
+Imagine that Coffee Connection sells coffee for $1.50 per cup. Java Coffee, a competitor, sells coffee for just $2.00 per cup. Although the Coffee Connection store is ten minutes away by car, Java Coffee is only about 1/2 block from your apartment. Assuming that you only buy coffee from these two places and that you like the coffee sold in both places the same, how many of your next 20 coffee purchases would be from Java Coffee? Enter a number between 0 and 20.
+
+
+:::
+
+
+

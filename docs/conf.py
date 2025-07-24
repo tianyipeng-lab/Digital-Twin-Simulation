@@ -16,8 +16,10 @@ release = '0.3.0'
 
 extensions = [
     'myst_parser',       
-    'sphinx_rtd_theme',  
+    'sphinx_rtd_theme', 
+    "sphinx_design", 
 ]
+myst_enable_extensions = ["colon_fence"]
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
