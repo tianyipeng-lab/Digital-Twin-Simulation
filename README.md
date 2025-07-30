@@ -1,9 +1,14 @@
 # Twin-2K-500: Digital Twin Simulation with LLMs
 
-This repository contains code for the experiments described in the paper ["Twin-2K-500: A dataset for building digital twins of over 2,000 people based on their answers to over 500 questions."](https://arxiv.org/abs/2505.17479). The project studies creating and simulating digital twins from persona profiles and survey responses using large language models. 
+[![HuggingFace](https://img.shields.io/badge/🤗%20Datasets-Twin--2K--500-blue)](https://huggingface.co/datasets/LLM-Digital-Twin/Twin-2K-500)
+![Downloads](https://img.shields.io/badge/downloads-1552-brightgreen)
+[![arXiv](https://img.shields.io/badge/arXiv-2505.17479-b31b1b.svg)](https://arxiv.org/abs/2505.17479)
+[![Documentation](https://img.shields.io/badge/docs-latest-blue.svg)](https://digital-twin-simulation-version2.readthedocs.io/en/latest/index.html)
 
-- **Dataset:** [LLM-Digital-Twin/Twin-2K-500 on HuggingFace](https://huggingface.co/datasets/LLM-Digital-Twin/Twin-2K-500)
-- **Tutorial and Use Cases:** [Tutorial for LLM-Digital-Twin/Twin-2K-500](https://digital-twin-simulation-version2.readthedocs.io/en/latest/index.html)
+
+This repository contains the code and tutorial for ["Twin-2K-500: A dataset for building digital twins of over 2,000 people based on their answers to over 500 questions"](https://arxiv.org/abs/2505.17479). The Twin-2K-500 dataset is designed to support the benchmarking and advancement of LLM-based persona simulation methods.
+
+- **Dataset:** [Twin-2K-500](https://huggingface.co/datasets/LLM-Digital-Twin/Twin-2K-500)
 
 ## Citation
 
@@ -15,6 +20,9 @@ This repository contains code for the experiments described in the paper ["Twin-
   year      = {2025}
 }
 ```
+
+## How to Use Our Dataset
+Before getting started, we highly recommend reviewing our documentation for detailed information about the dataset and tutorials for various use cases: **[Documentation](https://digital-twin-simulation-version2.readthedocs.io/en/latest/index.html)**
 
 ## Overview
 
