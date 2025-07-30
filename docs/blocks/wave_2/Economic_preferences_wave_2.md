@@ -33,17 +33,17 @@ The following 6 questions will concern amounts of money you may receive in the f
 
 Please choose between the following options. For each line in the list, you must choose between the option on the left and the option on the right. Note that on each line, the option on the left stays the same while the option on the right gets better as one goes down the list. You can select the option you would prefer receiving by clicking on the button next to that option.
 
-| Questions | 1 | 2 |
-| :--- | :---: | :---: |
-| $6.00 in 6 weeks:$3.00 in 5 weeks | ☐ | ☐ |
-| $6.00 in 6 weeks:$4.00 in 5 weeks | ☐ | ☐ |
-| $6.00 in 6 weeks:$4.50 in 5 weeks | ☐ | ☐ |
-| $6.00 in 6 weeks:$5.00 in 5 weeks | ☐ | ☐ |
-| $6.00 in 6 weeks:$5.25 in 5 weeks | ☐ | ☐ |
-| $6.00 in 6 weeks:$5.50 in 5 weeks | ☐ | ☐ |
-| $6.00 in 6 weeks:$5.75 in 5 weeks | ☐ | ☐ |
-| $6.00 in 6 weeks:$6.00 in 5 weeks | ☐ | ☐ |
-| $6.00 in 6 weeks:$7.00 in 5 weeks | ☐ | ☐ |
+| On one side | 1 | 2 | On the other side |
+| :--- | :---: | :---: | :---: |
+| $6.00 in 6 weeks | ☐ | ☐ | $3.00 in 5 weeks |
+| $6.00 in 6 weeks | ☐ | ☐ | $4.00 in 5 weeks |
+| $6.00 in 6 weeks | ☐ | ☐ | $4.50 in 5 weeks |
+| $6.00 in 6 weeks | ☐ | ☐ | $5.00 in 5 weeks |
+| $6.00 in 6 weeks | ☐ | ☐ | $5.25 in 5 weeks |
+| $6.00 in 6 weeks | ☐ | ☐ | $5.50 in 5 weeks |
+| $6.00 in 6 weeks | ☐ | ☐ | $5.75 in 5 weeks |
+| $6.00 in 6 weeks | ☐ | ☐ | $6.00 in 5 weeks |
+| $6.00 in 6 weeks | ☐ | ☐ | $7.00 in 5 weeks |
 
 
 :::
@@ -56,18 +56,18 @@ Please choose between the following options. For each line in the list, you must
 
 Please choose between the following options. For each line in the list, you must choose between the option on the left and the option on the right. Note that on each line, the option on the left stays the same while the option on the right gets better as one goes down the list. You can select the option you would prefer receiving by clicking on the button next to that option.
 
-| Questions | 1 | 2 |
-| :--- | :---: | :---: |
-| $8.00 in 7 weeks:$4.00 in 6 weeks | ☐ | ☐ |
-| $8.00 in 7 weeks:$5.00 in 6 weeks | ☐ | ☐ |
-| $8.00 in 7 weeks:$6.00 in 6 weeks | ☐ | ☐ |
-| $8.00 in 7 weeks:$6.50 in 6 weeks | ☐ | ☐ |
-| $8.00 in 7 weeks:$7.00 in 6 weeks | ☐ | ☐ |
-| $8.00 in 7 weeks:$7.25 in 6 weeks | ☐ | ☐ |
-| $8.00 in 7 weeks:$7.50 in 6 weeks | ☐ | ☐ |
-| $8.00 in 7 weeks:$7.75 in 6 weeks | ☐ | ☐ |
-| $8.00 in 7 weeks:$8.00 in 6 weeks | ☐ | ☐ |
-| $8.00 in 7 weeks:$9.00 in 6 weeks | ☐ | ☐ |
+| On one side | 1 | 2 | On the other side |
+| :--- | :---: | :---: | :---: |
+| $8.00 in 7 weeks | ☐ | ☐ | $4.00 in 6 weeks |
+| $8.00 in 7 weeks | ☐ | ☐ | $5.00 in 6 weeks |
+| $8.00 in 7 weeks | ☐ | ☐ | $6.00 in 6 weeks |
+| $8.00 in 7 weeks | ☐ | ☐ | $6.50 in 6 weeks |
+| $8.00 in 7 weeks | ☐ | ☐ | $7.00 in 6 weeks |
+| $8.00 in 7 weeks | ☐ | ☐ | $7.25 in 6 weeks |
+| $8.00 in 7 weeks | ☐ | ☐ | $7.50 in 6 weeks |
+| $8.00 in 7 weeks | ☐ | ☐ | $7.75 in 6 weeks |
+| $8.00 in 7 weeks | ☐ | ☐ | $8.00 in 6 weeks |
+| $8.00 in 7 weeks | ☐ | ☐ | $9.00 in 6 weeks |
 
 
 :::
@@ -80,19 +80,19 @@ Please choose between the following options. For each line in the list, you must
 
 Please choose between the following options. For each line in the list, you must choose between the option on the left and the option on the right. Note that on each line, the option on the left stays the same while the option on the right gets better as one goes down the list. You can select the option you would prefer receiving by clicking on the button next to that option.
 
-| Questions | 1 | 2 |
-| :--- | :---: | :---: |
-| $10.00 in 7 weeks:$5.00 in 5 weeks | ☐ | ☐ |
-| $10.00 in 7 weeks:$6.00 in 5 weeks | ☐ | ☐ |
-| $10.00 in 7 weeks:$7.00 in 5 weeks | ☐ | ☐ |
-| $10.00 in 7 weeks:$8.00 in 5 weeks | ☐ | ☐ |
-| $10.00 in 7 weeks:$8.50 in 5 weeks | ☐ | ☐ |
-| $10.00 in 7 weeks:$9.00 in 5 weeks | ☐ | ☐ |
-| $10.00 in 7 weeks:$9.25 in 5 weeks | ☐ | ☐ |
-| $10.00 in 7 weeks:$9.50 in 5 weeks | ☐ | ☐ |
-| $10.00 in 7 weeks:$9.75 in 5 weeks | ☐ | ☐ |
-| $10.00 in 7 weeks:$10.00 in 5 weeks | ☐ | ☐ |
-| $10.00 in 7 weeks:$11.00 in 5 weeks | ☐ | ☐ |
+| On one side | 1 | 2 | On the other side |
+| :--- | :---: | :---: | :---: |
+| $10.00 in 7 weeks | ☐ | ☐ | $5.00 in 5 weeks |
+| $10.00 in 7 weeks | ☐ | ☐ | $6.00 in 5 weeks |
+| $10.00 in 7 weeks | ☐ | ☐ | $7.00 in 5 weeks |
+| $10.00 in 7 weeks | ☐ | ☐ | $8.00 in 5 weeks |
+| $10.00 in 7 weeks | ☐ | ☐ | $8.50 in 5 weeks |
+| $10.00 in 7 weeks | ☐ | ☐ | $9.00 in 5 weeks |
+| $10.00 in 7 weeks | ☐ | ☐ | $9.25 in 5 weeks |
+| $10.00 in 7 weeks | ☐ | ☐ | $9.50 in 5 weeks |
+| $10.00 in 7 weeks | ☐ | ☐ | $9.75 in 5 weeks |
+| $10.00 in 7 weeks | ☐ | ☐ | $10.00 in 5 weeks |
+| $10.00 in 7 weeks | ☐ | ☐ | $11.00 in 5 weeks |
 
 
 :::
@@ -105,17 +105,17 @@ Please choose between the following options. For each line in the list, you must
 
 Please choose between the following options. For each line in the list, you must choose between the option on the left and the option on the right. Note that on each line, the option on the left stays the same while the option on the right gets better as one goes down the list. You can select the option you would prefer receiving by clicking on the button next to that option.
 
-| Questions | 1 | 2 |
-| :--- | :---: | :---: |
-| $6.00 in 1 week:$3.00 now | ☐ | ☐ |
-| $6.00 in 1 week:$4.00 now | ☐ | ☐ |
-| $6.00 in 1 week:$4.50 now | ☐ | ☐ |
-| $6.00 in 1 week:$5.00 now | ☐ | ☐ |
-| $6.00 in 1 week:$5.25 now | ☐ | ☐ |
-| $6.00 in 1 week:$5.50 now | ☐ | ☐ |
-| $6.00 in 1 week:$5.75 now | ☐ | ☐ |
-| $6.00 in 1 week:$6.00 now | ☐ | ☐ |
-| $6.00 in 1 week:$7.00 now | ☐ | ☐ |
+| On one side | 1 | 2 | On the other side |
+| :--- | :---: | :---: | :---: |
+| $6.00 in 1 week | ☐ | ☐ | $3.00 now |
+| $6.00 in 1 week | ☐ | ☐ | $4.00 now |
+| $6.00 in 1 week | ☐ | ☐ | $4.50 now |
+| $6.00 in 1 week | ☐ | ☐ | $5.00 now |
+| $6.00 in 1 week | ☐ | ☐ | $5.25 now |
+| $6.00 in 1 week | ☐ | ☐ | $5.50 now |
+| $6.00 in 1 week | ☐ | ☐ | $5.75 now |
+| $6.00 in 1 week | ☐ | ☐ | $6.00 now |
+| $6.00 in 1 week | ☐ | ☐ | $7.00 now |
 
 
 :::
@@ -128,18 +128,18 @@ Please choose between the following options. For each line in the list, you must
 
 Please choose between the following options. For each line in the list, you must choose between the option on the left and the option on the right. Note that on each line, the option on the left stays the same while the option on the right gets better as one goes down the list. You can select the option you would prefer receiving by clicking on the button next to that option.
 
-| Questions | 1 | 2 |
-| :--- | :---: | :---: |
-| $8.00 in 1 week:$4.00 now | ☐ | ☐ |
-| $8.00 in 1 week:$5.00 now | ☐ | ☐ |
-| $8.00 in 1 week:$6.00 now | ☐ | ☐ |
-| $8.00 in 1 week:$6.50 now | ☐ | ☐ |
-| $8.00 in 1 week:$7.00 now | ☐ | ☐ |
-| $8.00 in 1 week:$7.25 now | ☐ | ☐ |
-| $8.00 in 1 week:$7.50 now | ☐ | ☐ |
-| $8.00 in 1 week:$7.75 now | ☐ | ☐ |
-| $8.00 in 1 week:$8.00 now | ☐ | ☐ |
-| $8.00 in 1 week:$9.00 now | ☐ | ☐ |
+| On one side | 1 | 2 | On the other side |
+| :--- | :---: | :---: | :---: |
+| $8.00 in 1 week | ☐ | ☐ | $4.00 now |
+| $8.00 in 1 week | ☐ | ☐ | $5.00 now |
+| $8.00 in 1 week | ☐ | ☐ | $6.00 now |
+| $8.00 in 1 week | ☐ | ☐ | $6.50 now |
+| $8.00 in 1 week | ☐ | ☐ | $7.00 now |
+| $8.00 in 1 week | ☐ | ☐ | $7.25 now |
+| $8.00 in 1 week | ☐ | ☐ | $7.50 now |
+| $8.00 in 1 week | ☐ | ☐ | $7.75 now |
+| $8.00 in 1 week | ☐ | ☐ | $8.00 now |
+| $8.00 in 1 week | ☐ | ☐ | $9.00 now |
 
 
 :::
@@ -152,19 +152,19 @@ Please choose between the following options. For each line in the list, you must
 
 Please choose between the following options. For each line in the list, you must choose between the option on the left and the option on the right. Note that on each line, the option on the left stays the same while the option on the right gets better as one goes down the list. You can select the option you would prefer receiving by clicking on the button next to that option.
 
-| Questions | 1 | 2 |
-| :--- | :---: | :---: |
-| $10.00 in 2 weeks:$5.00 now | ☐ | ☐ |
-| $10.00 in 2 weeks:$6.00 now | ☐ | ☐ |
-| $10.00 in 2 weeks:$7.00 now | ☐ | ☐ |
-| $10.00 in 2 weeks:$8.00 now | ☐ | ☐ |
-| $10.00 in 2 weeks:$8.50 now | ☐ | ☐ |
-| $10.00 in 2 weeks:$9.00 now | ☐ | ☐ |
-| $10.00 in 2 weeks:$9.25 now | ☐ | ☐ |
-| $10.00 in 2 weeks:$9.50 now | ☐ | ☐ |
-| $10.00 in 2 weeks:$9.75 now | ☐ | ☐ |
-| $10.00 in 2 weeks:$10.00 now | ☐ | ☐ |
-| $10.00 in 2 weeks:$11.00 now | ☐ | ☐ |
+| On one side | 1 | 2 | On the other side |
+| :--- | :---: | :---: | :---: |
+| $10.00 in 2 weeks | ☐ | ☐ | $5.00 now |
+| $10.00 in 2 weeks | ☐ | ☐ | $6.00 now |
+| $10.00 in 2 weeks | ☐ | ☐ | $7.00 now |
+| $10.00 in 2 weeks | ☐ | ☐ | $8.00 now |
+| $10.00 in 2 weeks | ☐ | ☐ | $8.50 now |
+| $10.00 in 2 weeks | ☐ | ☐ | $9.00 now |
+| $10.00 in 2 weeks | ☐ | ☐ | $9.25 now |
+| $10.00 in 2 weeks | ☐ | ☐ | $9.50 now |
+| $10.00 in 2 weeks | ☐ | ☐ | $9.75 now |
+| $10.00 in 2 weeks | ☐ | ☐ | $10.00 now |
+| $10.00 in 2 weeks | ☐ | ☐ | $11.00 now |
 
 
 :::
@@ -188,22 +188,22 @@ In the next few questions, you will be asked to consider various lottery tickets
 
 In this question, the LOTTERY is a 50% chance of winning $6 and a 50% chance of winning $0.  Suppose you are given the option to exchange this lottery for certain amounts of money. Please choose between the following options. For each line in the list, you must choose between the option on the left and the option on the right. Note that on each line, the option on the left stays the same while the option on the right gets better as one goes down the list. You can select the option you would prefer receiving by clicking on the button next to that option.
 
-| Questions | 1 | 2 |
-| :--- | :---: | :---: |
-| Lottery:$0.50 | ☐ | ☐ |
-| Lottery:$1.00 | ☐ | ☐ |
-| Lottery:$1.25 | ☐ | ☐ |
-| Lottery:$1.50 | ☐ | ☐ |
-| Lottery:$1.75 | ☐ | ☐ |
-| Lottery:$2.00 | ☐ | ☐ |
-| Lottery:$2.25 | ☐ | ☐ |
-| Lottery:$2.50 | ☐ | ☐ |
-| Lottery:$2.75 | ☐ | ☐ |
-| Lottery:$3.00 | ☐ | ☐ |
-| Lottery:$3.25 | ☐ | ☐ |
-| Lottery:$3.50 | ☐ | ☐ |
-| Lottery:$4.00 | ☐ | ☐ |
-| Lottery:$5.00 | ☐ | ☐ |
+| On one side | 1 | 2 | On the other side |
+| :--- | :---: | :---: | :---: |
+| Lottery | ☐ | ☐ | $0.50 |
+| Lottery | ☐ | ☐ | $1.00 |
+| Lottery | ☐ | ☐ | $1.25 |
+| Lottery | ☐ | ☐ | $1.50 |
+| Lottery | ☐ | ☐ | $1.75 |
+| Lottery | ☐ | ☐ | $2.00 |
+| Lottery | ☐ | ☐ | $2.25 |
+| Lottery | ☐ | ☐ | $2.50 |
+| Lottery | ☐ | ☐ | $2.75 |
+| Lottery | ☐ | ☐ | $3.00 |
+| Lottery | ☐ | ☐ | $3.25 |
+| Lottery | ☐ | ☐ | $3.50 |
+| Lottery | ☐ | ☐ | $4.00 |
+| Lottery | ☐ | ☐ | $5.00 |
 
 
 :::
@@ -216,22 +216,22 @@ In this question, the LOTTERY is a 50% chance of winning $6 and a 50% chance of 
 
 In this question, the LOTTERY is a 50% chance of winning $8 and a 50% chance of winning $2.  Suppose you are given the option to exchange this lottery for certain amounts of money. Please choose between the following options. For each line in the list, you must choose between the option on the left and the option on the right. Note that on each line, the option on the left stays the same while the option on the right gets better as one goes down the list. You can select the option you would prefer receiving by clicking on the button next to that option.
 
-| Questions | 1 | 2 |
-| :--- | :---: | :---: |
-| Lottery:$2.50 | ☐ | ☐ |
-| Lottery:$3.00 | ☐ | ☐ |
-| Lottery:$3.25 | ☐ | ☐ |
-| Lottery:$3.50 | ☐ | ☐ |
-| Lottery:$3.75 | ☐ | ☐ |
-| Lottery:$4.00 | ☐ | ☐ |
-| Lottery:$4.25 | ☐ | ☐ |
-| Lottery:$4.50 | ☐ | ☐ |
-| Lottery:$4.75 | ☐ | ☐ |
-| Lottery:$5.00 | ☐ | ☐ |
-| Lottery:$5.25 | ☐ | ☐ |
-| Lottery:$5.50 | ☐ | ☐ |
-| Lottery:$6.00 | ☐ | ☐ |
-| Lottery:$7.00 | ☐ | ☐ |
+| On one side | 1 | 2 | On the other side |
+| :--- | :---: | :---: | :---: |
+| Lottery | ☐ | ☐ | $2.50 |
+| Lottery | ☐ | ☐ | $3.00 |
+| Lottery | ☐ | ☐ | $3.25 |
+| Lottery | ☐ | ☐ | $3.50 |
+| Lottery | ☐ | ☐ | $3.75 |
+| Lottery | ☐ | ☐ | $4.00 |
+| Lottery | ☐ | ☐ | $4.25 |
+| Lottery | ☐ | ☐ | $4.50 |
+| Lottery | ☐ | ☐ | $4.75 |
+| Lottery | ☐ | ☐ | $5.00 |
+| Lottery | ☐ | ☐ | $5.25 |
+| Lottery | ☐ | ☐ | $5.50 |
+| Lottery | ☐ | ☐ | $6.00 |
+| Lottery | ☐ | ☐ | $7.00 |
 
 
 :::
@@ -244,22 +244,22 @@ In this question, the LOTTERY is a 50% chance of winning $8 and a 50% chance of 
 
 In this question, the LOTTERY is a 50% chance of winning $10 and a 50% chance of winning $0.  Suppose you are given the option to exchange this lottery for certain amounts of money. Please choose between the following options. For each line in the list, you must choose between the option on the left and the option on the right. Note that on each line, the option on the left stays the same while the option on the right gets better as one goes down the list. You can select the option you would prefer receiving by clicking on the button next to that option.
 
-| Questions | 1 | 2 |
-| :--- | :---: | :---: |
-| Lottery:$2.50 | ☐ | ☐ |
-| Lottery:$3.00 | ☐ | ☐ |
-| Lottery:$3.25 | ☐ | ☐ |
-| Lottery:$3.50 | ☐ | ☐ |
-| Lottery:$3.75 | ☐ | ☐ |
-| Lottery:$4.00 | ☐ | ☐ |
-| Lottery:$4.25 | ☐ | ☐ |
-| Lottery:$4.50 | ☐ | ☐ |
-| Lottery:$4.75 | ☐ | ☐ |
-| Lottery:$5.00 | ☐ | ☐ |
-| Lottery:$5.25 | ☐ | ☐ |
-| Lottery:$5.50 | ☐ | ☐ |
-| Lottery:$6.00 | ☐ | ☐ |
-| Lottery:$7.00 | ☐ | ☐ |
+| On one side | 1 | 2 | On the other side |
+| :--- | :---: | :---: | :---: |
+| Lottery | ☐ | ☐ | $2.50 |
+| Lottery | ☐ | ☐ | $3.00 |
+| Lottery | ☐ | ☐ | $3.25 |
+| Lottery | ☐ | ☐ | $3.50 |
+| Lottery | ☐ | ☐ | $3.75 |
+| Lottery | ☐ | ☐ | $4.00 |
+| Lottery | ☐ | ☐ | $4.25 |
+| Lottery | ☐ | ☐ | $4.50 |
+| Lottery | ☐ | ☐ | $4.75 |
+| Lottery | ☐ | ☐ | $5.00 |
+| Lottery | ☐ | ☐ | $5.25 |
+| Lottery | ☐ | ☐ | $5.50 |
+| Lottery | ☐ | ☐ | $6.00 |
+| Lottery | ☐ | ☐ | $7.00 |
 
 
 :::
@@ -272,22 +272,22 @@ In this question, the LOTTERY is a 50% chance of winning $10 and a 50% chance of
 
 In this question, the LOTTERY is a 50% chance of LOSING $6 (as indicated by the minus sign before $6) and a 50% chance of winning $0.  Suppose you are given the option to exchange this lottery for certain amounts of money. The alternative also involves losing money, as indicated by the minus sign. Please choose between the following options. For each line in the list, you must choose between the option on the left and the option on the right. Note that on each line, the option on the left stays the same while the option on the right gets better as one goes down the list. You can select the option you would prefer receiving by clicking on the button next to that option.
 
-| Questions | 1 | 2 |
-| :--- | :---: | :---: |
-| Lottery:-$5.50 | ☐ | ☐ |
-| Lottery:-$5.00 | ☐ | ☐ |
-| Lottery:-$4.75 | ☐ | ☐ |
-| Lottery:-$4.50 | ☐ | ☐ |
-| Lottery:-$4.25 | ☐ | ☐ |
-| Lottery:-$4.00 | ☐ | ☐ |
-| Lottery:-$3.75 | ☐ | ☐ |
-| Lottery:-$3.50 | ☐ | ☐ |
-| Lottery:-$3.25 | ☐ | ☐ |
-| Lottery:-$3.00 | ☐ | ☐ |
-| Lottery:-$2.75 | ☐ | ☐ |
-| Lottery:-$2.50 | ☐ | ☐ |
-| Lottery:-$2.00 | ☐ | ☐ |
-| Lottery:-$1.00 | ☐ | ☐ |
+| On one side | 1 | 2 | On the other side |
+| :--- | :---: | :---: | :---: |
+| Lottery | ☐ | ☐ | -$5.50 |
+| Lottery | ☐ | ☐ | -$5.00 |
+| Lottery | ☐ | ☐ | -$4.75 |
+| Lottery | ☐ | ☐ | -$4.50 |
+| Lottery | ☐ | ☐ | -$4.25 |
+| Lottery | ☐ | ☐ | -$4.00 |
+| Lottery | ☐ | ☐ | -$3.75 |
+| Lottery | ☐ | ☐ | -$3.50 |
+| Lottery | ☐ | ☐ | -$3.25 |
+| Lottery | ☐ | ☐ | -$3.00 |
+| Lottery | ☐ | ☐ | -$2.75 |
+| Lottery | ☐ | ☐ | -$2.50 |
+| Lottery | ☐ | ☐ | -$2.00 |
+| Lottery | ☐ | ☐ | -$1.00 |
 
 
 :::
@@ -300,22 +300,22 @@ In this question, the LOTTERY is a 50% chance of LOSING $6 (as indicated by the 
 
 In this question, the LOTTERY is a 50% chance of LOSING $8 and a 50% chance of LOSING $2 (as indicated by the minus sign before $8 and $2).  Suppose you are given the option to exchange this lottery for certain amounts of money. The alternative also involves losing money, as indicated by the minus sign. Please choose between the following options. For each line in the list, you must choose between the option on the left and the option on the right. Note that on each line, the option on the left stays the same while the option on the right gets better as one goes down the list. You can select the option you would prefer receiving by clicking on the button next to that option.
 
-| Questions | 1 | 2 |
-| :--- | :---: | :---: |
-| Lottery:-$7.50 | ☐ | ☐ |
-| Lottery:-$7.00 | ☐ | ☐ |
-| Lottery:-$6.75 | ☐ | ☐ |
-| Lottery:-$6.50 | ☐ | ☐ |
-| Lottery:-$6.25 | ☐ | ☐ |
-| Lottery:-$6.00 | ☐ | ☐ |
-| Lottery:-$5.75 | ☐ | ☐ |
-| Lottery:-$5.50 | ☐ | ☐ |
-| Lottery:-$5.25 | ☐ | ☐ |
-| Lottery:-$5.00 | ☐ | ☐ |
-| Lottery:-$4.75 | ☐ | ☐ |
-| Lottery:-$4.50 | ☐ | ☐ |
-| Lottery:-$4.00 | ☐ | ☐ |
-| Lottery:-$3.00 | ☐ | ☐ |
+| On one side | 1 | 2 | On the other side |
+| :--- | :---: | :---: | :---: |
+| Lottery | ☐ | ☐ | -$7.50 |
+| Lottery | ☐ | ☐ | -$7.00 |
+| Lottery | ☐ | ☐ | -$6.75 |
+| Lottery | ☐ | ☐ | -$6.50 |
+| Lottery | ☐ | ☐ | -$6.25 |
+| Lottery | ☐ | ☐ | -$6.00 |
+| Lottery | ☐ | ☐ | -$5.75 |
+| Lottery | ☐ | ☐ | -$5.50 |
+| Lottery | ☐ | ☐ | -$5.25 |
+| Lottery | ☐ | ☐ | -$5.00 |
+| Lottery | ☐ | ☐ | -$4.75 |
+| Lottery | ☐ | ☐ | -$4.50 |
+| Lottery | ☐ | ☐ | -$4.00 |
+| Lottery | ☐ | ☐ | -$3.00 |
 
 
 :::
@@ -328,22 +328,22 @@ In this question, the LOTTERY is a 50% chance of LOSING $8 and a 50% chance of L
 
 In this question, the LOTTERY is a 50% chance of LOSING $10 (as indicated by the minus sign before $10) and a 50% chance of winning $0.  Suppose you are given the option to exchange this lottery for certain amounts of money. The alternative also involves losing money, as indicated by the minus sign. Please choose between the following options. For each line in the list, you must choose between the option on the left and the option on the right. Note that on each line, the option on the left stays the same while the option on the right gets better as one goes down the list. You can select the option you would prefer receiving by clicking on the button next to that option.
 
-| Questions | 1 | 2 |
-| :--- | :---: | :---: |
-| Lottery:-$7.50 | ☐ | ☐ |
-| Lottery:-$7.00 | ☐ | ☐ |
-| Lottery:-$6.75 | ☐ | ☐ |
-| Lottery:-$6.50 | ☐ | ☐ |
-| Lottery:-$6.25 | ☐ | ☐ |
-| Lottery:-$6.00 | ☐ | ☐ |
-| Lottery:-$5.75 | ☐ | ☐ |
-| Lottery:-$5.50 | ☐ | ☐ |
-| Lottery:-$5.25 | ☐ | ☐ |
-| Lottery:-$5.00 | ☐ | ☐ |
-| Lottery:-$4.75 | ☐ | ☐ |
-| Lottery:-$4.50 | ☐ | ☐ |
-| Lottery:-$4.00 | ☐ | ☐ |
-| Lottery:-$3.00 | ☐ | ☐ |
+| On one side | 1 | 2 | On the other side |
+| :--- | :---: | :---: | :---: |
+| Lottery | ☐ | ☐ | -$7.50 |
+| Lottery | ☐ | ☐ | -$7.00 |
+| Lottery | ☐ | ☐ | -$6.75 |
+| Lottery | ☐ | ☐ | -$6.50 |
+| Lottery | ☐ | ☐ | -$6.25 |
+| Lottery | ☐ | ☐ | -$6.00 |
+| Lottery | ☐ | ☐ | -$5.75 |
+| Lottery | ☐ | ☐ | -$5.50 |
+| Lottery | ☐ | ☐ | -$5.25 |
+| Lottery | ☐ | ☐ | -$5.00 |
+| Lottery | ☐ | ☐ | -$4.75 |
+| Lottery | ☐ | ☐ | -$4.50 |
+| Lottery | ☐ | ☐ | -$4.00 |
+| Lottery | ☐ | ☐ | -$3.00 |
 
 
 :::
@@ -356,22 +356,22 @@ In this question, the LOTTERY is a 50% chance of LOSING $10 (as indicated by the
 
 In this question, the LOTTERY is a 50% chance of LOSING $8 (as indicated by the minus sign before $8) and a 50% chance of winning a value x.  Suppose you are given the option to exchange this lottery for the certainty of winning $0. Please choose between the following options. For each line in the list, you must choose between the option on the left and the option on the right. Note that on each line, the option on the left gets better as one goes down the list while the option on the right stays the same. You can select the option you would prefer receiving by clicking on the button next to that option.
 
-| Questions | 1 | 2 |
-| :--- | :---: | :---: |
-| Lottery with x=$7.00:$0 | ☐ | ☐ |
-| Lottery with x=$8.00:$0 | ☐ | ☐ |
-| Lottery with x=$9.00:$0 | ☐ | ☐ |
-| Lottery with x=$10.00:$0 | ☐ | ☐ |
-| Lottery with x=$11.00:$0 | ☐ | ☐ |
-| Lottery with x=$12.00:$0 | ☐ | ☐ |
-| Lottery with x=$13.00:$0 | ☐ | ☐ |
-| Lottery with x=$14.00:$0 | ☐ | ☐ |
-| Lottery with x=$15.00:$0 | ☐ | ☐ |
-| Lottery with x=$16.00:$0 | ☐ | ☐ |
-| Lottery with x=$17.00:$0 | ☐ | ☐ |
-| Lottery with x=$18.00:$0 | ☐ | ☐ |
-| Lottery with x=$19.00:$0 | ☐ | ☐ |
-| Lottery with x=$20.00:$0 | ☐ | ☐ |
+| On one side | 1 | 2 | On the other side |
+| :--- | :---: | :---: | :---: |
+| Lottery with x=$7.00 | ☐ | ☐ | $0 |
+| Lottery with x=$8.00 | ☐ | ☐ | $0 |
+| Lottery with x=$9.00 | ☐ | ☐ | $0 |
+| Lottery with x=$10.00 | ☐ | ☐ | $0 |
+| Lottery with x=$11.00 | ☐ | ☐ | $0 |
+| Lottery with x=$12.00 | ☐ | ☐ | $0 |
+| Lottery with x=$13.00 | ☐ | ☐ | $0 |
+| Lottery with x=$14.00 | ☐ | ☐ | $0 |
+| Lottery with x=$15.00 | ☐ | ☐ | $0 |
+| Lottery with x=$16.00 | ☐ | ☐ | $0 |
+| Lottery with x=$17.00 | ☐ | ☐ | $0 |
+| Lottery with x=$18.00 | ☐ | ☐ | $0 |
+| Lottery with x=$19.00 | ☐ | ☐ | $0 |
+| Lottery with x=$20.00 | ☐ | ☐ | $0 |
 
 
 :::
