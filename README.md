@@ -3,6 +3,7 @@
 This repository contains code for the experiments described in the paper ["Twin-2K-500: A dataset for building digital twins of over 2,000 people based on their answers to over 500 questions."](https://arxiv.org/abs/2505.17479). The project studies creating and simulating digital twins from persona profiles and survey responses using large language models. 
 
 - **Dataset:** [LLM-Digital-Twin/Twin-2K-500 on HuggingFace](https://huggingface.co/datasets/LLM-Digital-Twin/Twin-2K-500)
+- **Tutorial and Use Cases:** [Tutorial for LLM-Digital-Twin/Twin-2K-500](https://digital-twin-simulation-version2.readthedocs.io/en/latest/index.html)
 
 ## Citation
 
