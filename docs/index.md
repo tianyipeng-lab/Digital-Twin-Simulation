@@ -3,4 +3,5 @@
 ```{toctree}
 :maxdepth: 2
 
-intro
+intro/index
+notebooks/index

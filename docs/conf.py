@@ -36,10 +36,7 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 html_theme_options = {
-    # allow sidebar groups to be collapsed/expanded
-    "collapse_navigation": True,
-    # show two levels: wave → block
+    "collapse_navigation": False,
     "navigation_depth": 2,
-    # show the toctree entries, not just page titles
     "titles_only": False,
 }
